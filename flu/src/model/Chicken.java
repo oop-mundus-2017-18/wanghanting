@@ -1,6 +1,6 @@
 package model;
 
-import state.State;
+import states.State;
 import virus.Virus;
 
 public class Chicken extends Animal{

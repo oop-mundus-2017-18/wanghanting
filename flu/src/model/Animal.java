@@ -1,12 +1,12 @@
 package model;
 
-import state.State;
+import states.State;
 import virus.Virus;
 
 public class Animal {
     State state;
     Virus virus;
-    //wanghan
+ 
     public Animal(State state, Virus virus) {
         this.state = state;
         this.virus = virus;
@@ -22,7 +22,7 @@ public class Animal {
     }
     
     public String getVirus() {
-        return "Animal: "+virus.getVirusName();
+        return "Animal: "+virus.getName();
     }
     
 }

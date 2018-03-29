@@ -1,6 +1,6 @@
 package model;
 
-import state.State;
+import states.State;
 import virus.Virus;
 
 public class Person {
@@ -22,7 +22,7 @@ public class Person {
     }
     
     public String getVirus() {
-        return "Person: "+virus.getVirusName();
+        return "Person: "+virus.getName();
     }
     
 }
