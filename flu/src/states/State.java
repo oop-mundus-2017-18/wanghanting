@@ -1,7 +1,8 @@
 package states;
 
 public enum State {
-    HEALTHY("healthy"), INFECTED("infected");
+    HEALTHY("healthy"), INFECTED("infected"),
+    CONTAGIOUS("contagious"), RECOVERING("recovering"), DEAD("dead");
 
     private String state = "";
     

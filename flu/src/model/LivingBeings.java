@@ -2,6 +2,7 @@ package model;
 
 import states.*;
 import virus.*;
+import simulator.*;
 
 /**
  * @author WANG Hanting
@@ -12,12 +13,14 @@ public abstract class LivingBeings {
     protected Being type;
     protected Virus virus;
     protected boolean alive;
+    protected Field field;
 
-    public LivingBeings(State state, Being type, Virus virus, boolean alive) {
+    public LivingBeings(State state, Being type, Virus virus, boolean alive, Field field) {
         this.state = state;
         this.type = type;
         this.virus = null;
         this.alive = true;
+        this.field = field;
     }
 
     /**

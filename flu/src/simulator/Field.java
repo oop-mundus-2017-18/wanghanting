@@ -9,7 +9,6 @@ package simulator;
      * Represent a rectangular grid of field positions. Each position is able to
      * store a single animal.
      * 
-     * @author WANG Hanting
      * @version 1.0
      */
     public class Field {
