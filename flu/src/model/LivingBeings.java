@@ -14,13 +14,13 @@ public abstract class LivingBeings {
     protected Virus virus;
     protected boolean alive;
     protected Field field;
+    protected Location location;
 
-    public LivingBeings(State state, Being type, Virus virus, boolean alive, Field field) {
+    public LivingBeings(State state, Being type, Field field, Location location) {
         this.state = state;
         this.type = type;
-        this.virus = null;
-        this.alive = true;
         this.field = field;
+        this.location = location;
     }
 
     /**
@@ -61,5 +61,40 @@ public abstract class LivingBeings {
     {
         return alive;
     }
-
+    
+    protected void setDead() {
+        alive = false;
+        if (location != null) {
+            field.clear(location);
+            location = null;
+            field = null;
+        }
+    }
+    
+    protected Location getLocation() {
+        return location;
+    }
+    
+    protected void setLocation(Location newLocation)
+    {
+        if(location != null) {
+            field.clear(location);
+        }
+        location = newLocation;
+        field.place(this, newLocation);
+    }
+    
+    protected Field getField() {
+        return field;
+    }
+    
+    
+    
+    abstract protected void updateTime();
+    
+    public abstract boolean isResist();
+    
+    public void setResist(boolean resistant) {
+        
+    }
 }

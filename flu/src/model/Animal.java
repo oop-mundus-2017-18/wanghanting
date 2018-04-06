@@ -1,28 +1,54 @@
 package model;
 
-import states.State;
-import virus.Virus;
+import states.*;
+import java.util.Random;
+import simulator.*;
 
-public class Animal {
-    State state;
-    Virus virus;
- 
-    public Animal(State state, Virus virus) {
-        this.state = state;
-        this.virus = virus;
-    }
+public abstract class Animal extends LivingBeings {
+    private int timeInfection;
+    private int timeContagious;
+    StatesManager statesManager;
+
+    public Animal(State state, Being type, Field field, Location location) {
+        super(State.INFECTED, type, field, location);
     
-    public void infect(Animal a) {
-        
+    Random rand = Randomizer.getRandom();
+    if (rand.nextBoolean()) this.state = State.INFECTED;
+    else this.state = State.HEALTHY;
+
+    this.field = field;
+    this.statesManager = new StatesManagerAnimal(this.state, type, field, location);
     }
-    
+
     @Override
     public String toString(){
         return "Animal: "+state.getState();
     }
     
-    public String getVirus() {
-        return "Animal: "+virus.getName();
+    @Override
+    public void act() {
+        if (isAlive()) {
+            updateTime();
+            this.state = statesManager.getState(virus, timeInfection, timeContagious);
+            if (state.equals(State.DEAD)) {
+                setDead();
+            }
+        }
     }
-    
+
+    /**
+     * Update the time of Infection or Contagious.
+     */
+    @Override
+    protected void updateTime() {
+        if (state.equals(State.INFECTED))
+            timeInfection++;
+        else if (state.equals(State.CONTAGIOUS))
+            timeContagious++;
+    }
+
+    @Override
+    public boolean isResist() {
+        return false;
+    }
 }
